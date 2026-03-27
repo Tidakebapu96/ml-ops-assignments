@@ -1,0 +1,11 @@
+.env
+.venv/
+__pycache__/
+*.pyc
+output/
+Agents/chroma.sqlite3
+Agents/*/data_level0.bin
+Agents/*/header.bin
+Agents/*/length.bin
+Agents/*/link_lists.bin
+Agents/logging.txt
