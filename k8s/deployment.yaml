@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kidney-disease-classifier
+  namespace: ml-ops
+  labels:
+    app: kidney-disease-classifier
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kidney-disease-classifier
+  template:
+    metadata:
+      labels:
+        app: kidney-disease-classifier
+    spec:
+      containers:
+        - name: kidney-disease-classifier
+          # Uses Minikube's local Docker daemon (built via: eval $(minikube docker-env) && docker build)
+          image: kidney-disease-classifier:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
+          env:
+            - name: LANG
+              value: "en_US.UTF-8"
+            - name: LC_ALL
+              value: "en_US.UTF-8"
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "250m"
+            limits:
+              memory: "2Gi"
+              cpu: "1000m"
